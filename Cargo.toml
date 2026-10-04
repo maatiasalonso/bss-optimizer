@@ -1,0 +1,38 @@
+[package]
+name = "bss-optimizer"
+version = "0.2.0"
+edition = "2021"
+authors = ["Matias San Martin"]
+description = "SOTA Clean Architecture Bicycle-Sharing System (BSS) Districting & Rebalancing Optimizer in Rust"
+
+[dependencies]
+good_lp = { version = "1.15", default-features = false, features = ["highs"] }
+rusqlite = { version = "0.33", features = ["bundled"] }
+rayon = "1.10"
+clap = { version = "4.5", features = ["derive"] }
+indicatif = { version = "0.17", features = ["rayon"] }
+comfy-table = "7.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+rand = "0.8"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_debug_implementations = "warn"
+unused_variables = "deny"
+dead_code = "deny"
+unreachable_code = "deny"
+unused_must_use = "deny"
+
+[lints.clippy]
+correctness = "deny"
+suspicious = "warn"
+complexity = "warn"
+perf = "warn"
+style = "warn"
